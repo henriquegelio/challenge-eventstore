@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import br.com.jonyfs.event.EventIteratorImpl;
 import lombok.Getter;
+import net.intelie.challenges.EventIteratorClass;
 
 public class EventStoreDAO implements EventStore{
 	
