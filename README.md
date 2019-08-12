@@ -1,6 +1,6 @@
 # Implement EventStore
 
-In this challenge, you will create a class that implements the `EventStore` 
+In this challenge, I have created a class that implements the `EventStore` 
 interface.
  
 ```java
@@ -13,41 +13,27 @@ public interface EventStore {
 }
 ```
 
-Your implementation should store events in memory, using any data structures 
-you see fit for the task. The required behavior for the interface is described in the
+My implementation stores events in memory using Synchronized Lists data structures.
+I chose to use them because they are naturally thread-safe.
+The behavior for the interface is described in the
 provided code javadocs, please see `EventStore` and `EventIterator`
 interfaces inside the `src/main/java` directory.
  
-The implementation should be correct, fast, memory-efficient, and thread-safe. 
-You may consider that insertions, deletions, queries, and iterations 
-will happen frequently and concurrently. This will be a system hotspot. Optimize at will. 
+Some tests were also written for each method from the created classes.
+The evidence of the thread-safety is the wrapper Synchronized List itself,
+but it might also be verified at `https://www.baeldung.com/java-synchronized-collections`
 
-We expect you to:
-* Write tests;
-* Provide some evidence of thread-safety;
-* Justify design choices, arguing about costs 
-  and benefits involved. You may write those as comments 
-  inline or, if you wish, provide a separate document 
-  summarizing those choices;
-* Write all code and documentation in english.
+"Collections.synchronizedList() method Returns a synchronized (thread-safe) list backed by the specified list. In order to guarantee serial access, it is critical that all access to the backing list is accomplished through the returned list."
+
+There were created two classes:
+
+-> `EventStoreDAO`, which implements the EventStore interface and is responsible for the CRUD operations;
+
+-> `EventInteretorClass`, which implements the EventInterator interface and is designed to be the iterator itself.
+
+It's easier to understand this way and we can reserve each class to it's main purpose, 
+so we can increase cohesion between classes and decrease coupling.
   
-You may use external libraries, but their use has to be 
-properly justified as well.
- 
-This challenge is intentionally simple, we expect a simple,
-elegant, and polished solution. There is no unique solution to this challenge. 
-The intent is to evaluate candidate's coding proficiency and familiarity with 
-tools and best practices.
+I used `Lombok` dependency as well in order to decrease verbosity.
 
-
-## Solve this challenge
-
-To solve this challenge, you may fork this repository, then 
-send us a link with your implementation. Alternatively, if you do not want to have this repo on
-your profile (we totally get it), send us a 
-[git patch file](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/) 
-with your changes.
-
-If you are already in the hiring process, you may send it to 
- whoever is your contact at Intelie. If you wish to apply for a job at 
- Intelie, please send your solution to [trabalhe@intelie.com.br](mailto:trabalhe@intelie.com.br).
+As instructed, the original repo was forked and a link will be provided to Intelie.

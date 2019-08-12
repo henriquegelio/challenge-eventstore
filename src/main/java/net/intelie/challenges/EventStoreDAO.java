@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 import lombok.Getter;
 import net.intelie.challenges.EventIteratorClass;
 
+/**
+ * Implements EventStore interface..
+ * <p>
+ * Events are stored in memory, using a Synchronized List.
+ */
 public class EventStoreDAO implements EventStore{
 	
 	//The use of synchronized list wrapper is to be sure it's returning a thread-safe collection.

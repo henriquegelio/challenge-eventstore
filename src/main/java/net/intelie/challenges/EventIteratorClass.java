@@ -6,15 +6,22 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Implements EventIterator interface..
+ */
 @EqualsAndHashCode @ToString
 public class EventIteratorClass implements EventIterator {
 	
 	@Getter private List<Event> events;
 	private Event event;
-	private int index = -1;
+	@Getter private int index = -1;
 	
 	public EventIteratorClass(List<Event> events) {
 		this.events = events;
+		if (!this.events.isEmpty()) {
+			index = 0;
+			event = events.get(index);
+		}
 	}
 
 	@Override
@@ -24,16 +31,19 @@ public class EventIteratorClass implements EventIterator {
 
 	@Override
 	public boolean moveNext() {
-		if (events.isEmpty() || events == null || index == -1) {
+		if (events.isEmpty() || events == null) {
             return false;
         }
 		else {
 			index++;
-            if (index < events.size() - 1) {
+            if (index <= events.size() - 1) {
                 event = events.get(index);
                 return true;
             }
-            else return false;
+            else {
+            	index = -1;
+            	return false;
+            }
         }
 	}
 
@@ -42,7 +52,7 @@ public class EventIteratorClass implements EventIterator {
 		if (events.isEmpty() || events == null || index == -1 || event == null) {
 			throw new IllegalStateException("Event Iterator was never started.");
 		}
-		else if (index >= events.size() - 1) {
+		else if (index > events.size() - 1) {
 			throw new IllegalStateException("There is no current event.");
 		}
 		else {
@@ -55,12 +65,21 @@ public class EventIteratorClass implements EventIterator {
 		if (events.isEmpty() || events == null || index == -1 || event == null) {
 			throw new IllegalStateException("Event Iterator was never started.");
 		}
-		else if (index >= events.size() - 1) {
+		else if (index > events.size() - 1) {
 			throw new IllegalStateException("There is no current event.");
 		}
 		else {
 			events.remove(index);
-			this.event = null;
+			if (!events.isEmpty()) {
+				if (index > events.size() - 1) {
+					index--;
+				}
+				this.event = events.get(index);
+			}
+			else {
+				this.event = null;
+				index = -1;
+			}
 		}
 	}
 
