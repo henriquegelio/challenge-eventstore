@@ -19,4 +19,20 @@ public class Event {
     public long timestamp() {
         return timestamp;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	
+    	if (obj == this) {
+	      return true;
+    	}
+    	if (!(obj instanceof Event)) {
+	      return false;
+    	}
+    	
+    	Event event = (Event) obj;
+    	
+    	return (event.type.equals(type) && event.timestamp == timestamp);
+    	
+    }
 }
