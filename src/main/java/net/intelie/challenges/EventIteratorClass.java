@@ -2,9 +2,14 @@ package net.intelie.challenges;
 
 import java.util.List;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@EqualsAndHashCode @ToString
 public class EventIteratorClass implements EventIterator {
 	
-	private List<Event> events;
+	@Getter private List<Event> events;
 	private Event event;
 	private int index = -1;
 	

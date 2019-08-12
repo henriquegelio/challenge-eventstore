@@ -5,9 +5,9 @@ package net.intelie.challenges;
  */
 public class Event {
     private final String type;
-    private final Long timestamp;
+    private final long timestamp;
 
-    public Event(String type, Long timestamp) {
+    public Event(String type, long timestamp) {
         this.type = type;
         this.timestamp = timestamp;
     }
@@ -16,7 +16,7 @@ public class Event {
         return type;
     }
 
-    public Long getTimeStamp() {
+    public long getTimeStamp() {
         return timestamp;
     }
     

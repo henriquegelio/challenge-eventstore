@@ -23,8 +23,7 @@ public class EventStoreDAO implements EventStore{
 	}
 
 	@Override
-	public EventIterator query(String type, Long startTime, Long endTime) {
-		
+	public EventIteratorClass query(String type, long startTime, long endTime) {
 		//In order to filter, I'm using streams to make it easier
         return new EventIteratorClass(Collections.synchronizedList(events.stream()
             .filter(event -> event.getType().equals(type))
